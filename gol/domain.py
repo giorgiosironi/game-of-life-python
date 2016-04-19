@@ -76,7 +76,7 @@ class Generation:
         candidates = frozenset()
         for cell in self._alive_cells:
             candidates = candidates.union(cell.candidates())
-        alive = [c for c in candidates if (State.alive == rules.next_state(self._state(c), self._alive_neighbors(c)))]
+        alive = {c for c in candidates if (State.alive == rules.next_state(self._state(c), self._alive_neighbors(c)))}
         return Generation(frozenset(alive))
     def _state(self, cell):
         if cell in self._alive_cells:
@@ -84,4 +84,4 @@ class Generation:
         else:
             return(State.dead)
     def _alive_neighbors(self, cell):
-        return(len([n for n in cell.neighbors() if n in self._alive_cells]))
+        return(len({n for n in cell.neighbors() if n in self._alive_cells}))
