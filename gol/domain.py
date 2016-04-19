@@ -62,6 +62,9 @@ class Generation:
     @staticmethod
     def vertical_bar():
         return(Generation(frozenset([Cell(0, -1), Cell(0, 0), Cell(0, 1)])))
+    @staticmethod
+    def block():
+        return(Generation(frozenset([Cell(0, 0), Cell(0, 1), Cell(1, 0), Cell(1, 1)])))
     def __init__(self, alive_cells):
         self._alive_cells = alive_cells
     def __eq__(self, another):
