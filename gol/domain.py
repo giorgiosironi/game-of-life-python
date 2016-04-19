@@ -54,3 +54,31 @@ class ClassicRules:
             if (alive_neighbors == 3):
                 return(State.alive)
         return(State.dead)
+
+class Generation:
+    @staticmethod
+    def horizontal_bar():
+        return(Generation(frozenset([Cell(-1, 0), Cell(0, 0), Cell(1, 0)])))
+    @staticmethod
+    def vertical_bar():
+        return(Generation(frozenset([Cell(0, -1), Cell(0, 0), Cell(0, 1)])))
+    def __init__(self, alive_cells):
+        self._alive_cells = alive_cells
+    def __eq__(self, another):
+        return(self._alive_cells == another._alive_cells)
+    def __repr__(self):
+        return "Generation(%s)" % (self._alive_cells, )
+    def evolve(self, rules):
+        # TODO: list comprehensions?
+        candidates = frozenset()
+        for cell in self._alive_cells:
+            candidates = candidates.union(cell.candidates())
+        alive = [c for c in candidates if (State.alive == rules.next_state(self._state(c), self._alive_neighbors(c)))]
+        return Generation(frozenset(alive))
+    def _state(self, cell):
+        if cell in self._alive_cells:
+            return(State.alive)
+        else:
+            return(State.dead)
+    def _alive_neighbors(self, cell):
+        return(len([n for n in cell.neighbors() if n in self._alive_cells]))

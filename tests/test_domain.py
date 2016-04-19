@@ -46,3 +46,4 @@ def test_rules_for_dead_cells():
     assert State.dead == rules.next_state(State.dead, 6)
     assert State.dead == rules.next_state(State.dead, 7)
     assert State.dead == rules.next_state(State.dead, 8)
+
