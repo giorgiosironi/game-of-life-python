@@ -40,3 +40,17 @@ class Cell:
 
     def y(self):
         return(self._y)
+
+class State:
+    alive = True
+    dead = False
+
+class ClassicRules:
+    def next_state(self, state, alive_neighbors):
+        if (state == State.alive):
+            if (alive_neighbors >= 2 and alive_neighbors <= 3):
+                return(State.alive)
+        else:
+            if (alive_neighbors == 3):
+                return(State.alive)
+        return(State.dead)
