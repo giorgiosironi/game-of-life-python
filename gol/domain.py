@@ -20,6 +20,9 @@ class Cell:
             Cell(self._x+1, self._y+1),
         ])
 
+    def candidates(self):
+        return self.neighbors() | frozenset([self])
+
     def __eq__(self, another):
         return(self._x == another._x and self._y == another._y)
 

@@ -4,6 +4,14 @@ from gol.domain import Cell
 def test_true():
     assert 42 == domain.answer()
 
+def test_cell_candidates():
+    cell = Cell(0, 0)
+    candidates = cell.candidates()
+    assert 9 == len(candidates)
+    for n in candidates:
+        assert abs(n.x()) <= 1
+        assert abs(n.y()) <= 1
+
 def test_cell_neighbors():
     cell = Cell(0, 0)
     neighbors = cell.neighbors()
