@@ -27,7 +27,7 @@ class Cell:
         return(self._x * 31 + self._y)
 
     def __str__(self):
-        return("Cell(%d, %d)" % (self._x, self._y))
+        return("Cell({}, {})".format(self._x, self._y))
 
     def __repr__(self):
         return(self.__str__())
@@ -67,7 +67,7 @@ class Generation:
     def __eq__(self, another):
         return(self._alive_cells == another._alive_cells)
     def __repr__(self):
-        return "Generation(%s)" % (self._alive_cells, )
+        return "Generation({})".format(self._alive_cells)
     def evolve(self, rules):
         # TODO: list comprehensions?
         candidates = frozenset()
