@@ -5,17 +5,10 @@ class Cell:
         self._y = y
 
     def neighbors(self):
-        # TODO: use list comprehension
-        return frozenset([
-            Cell(self._x-1, self._y-1),
-            Cell(self._x-1, self._y),
-            Cell(self._x-1, self._y+1),
-            Cell(self._x, self._y-1),
-            Cell(self._x, self._y+1),
-            Cell(self._x+1, self._y-1),
-            Cell(self._x+1, self._y),
-            Cell(self._x+1, self._y+1),
-        ])
+        return frozenset([Cell(x, y) 
+            for x in range(self._x-1, self._x+2) 
+            for y in range(self._y-1, self._y+2)
+            if not (x == self._x and y == self._y)])
 
     def candidates(self):
         return self.neighbors() | frozenset([self])
