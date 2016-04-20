@@ -3,12 +3,17 @@ from gol.domain import Cell
 from gol.domain import Generation
 from gol.domain import State
 from gol.domain import ClassicRules
+import pytest
+
+def test_cell_must_be_at_an_integer_position():
+    with pytest.raises(AssertionError):
+        Cell("something", 1)
 
 def test_cell_representation():
     assert "Cell(0, 1)" == repr(Cell(0, 1))
 
 def test_generation_representation():
-    assert "Generation([Cell(0, 1), Cell(2, 3)])" == repr(Generation([Cell(0, 1), Cell(2, 3)]))
+    assert "Generation(frozenset([Cell(0, 1), Cell(2, 3)]))" == repr(Generation(frozenset([Cell(0, 1), Cell(2, 3)])))
 
 def test_cell_candidates():
     cell = Cell(0, 0)
