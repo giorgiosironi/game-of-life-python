@@ -1,10 +1,14 @@
 from gol import domain
 from gol.domain import Cell
+from gol.domain import Generation
 from gol.domain import State
 from gol.domain import ClassicRules
 
-def test_true():
-    assert 42 == domain.answer()
+def test_cell_representation():
+    assert "Cell(0, 1)" == repr(Cell(0, 1))
+
+def test_generation_representation():
+    assert "Generation([Cell(0, 1), Cell(2, 3)])" == repr(Generation([Cell(0, 1), Cell(2, 3)]))
 
 def test_cell_candidates():
     cell = Cell(0, 0)

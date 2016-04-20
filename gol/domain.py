@@ -1,6 +1,3 @@
-def answer():
-    return(42)
-
 class Cell:
     def __init__(self, x, y):
         # TODO: idiomatic usage of fields and their scope
